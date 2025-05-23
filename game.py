@@ -16,14 +16,18 @@ ground = pygame.image.load(r'dino-game\ground.png')
 
 curr_score = 0
 high_score = 0
-text = curr_font.render(f'HI  {curr_score:05}  {high_score:05}', False, 'Black')
+text = curr_font.render(f'HI  {curr_score:05}  {high_score:05}', True, 'Black')
 
 dino = pygame.image.load(r'dino-game\dino-removebg-preview.png')
 dino = pygame.transform.scale(dino, (60, 60))
 dino_pos = 250
 
-#sample_surface = pygame.Surface((100,100))
-#sample_surface.fill('pink')
+small_cactus = pygame.image.load(r'dino-game\small_cactus.png')
+big_cactus = pygame.image.load(r'dino-game\big_cactus.png')
+small_cactus = pygame.transform.scale(small_cactus, (40, 60))
+big_cactus = pygame.transform.scale(big_cactus, (80, 70))
+
+small_pos = 760
 
 while True:
     # be able to close the window
@@ -37,16 +41,23 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
                 print("JUMP!")
-                dino_pos -= 100
+                dino_pos -= 150
     
     screen.blit(sky, (0,0))
     screen.blit(ground, (0, 300))
     screen.blit(text, (640, 10))
+    curr_score += 1
+    text = curr_font.render(f'HI  {curr_score:05}  {high_score:05}', True, 'Black')
 
     if dino_pos != 250:
         dino_pos += 0.5
     screen.blit(dino, (0, dino_pos))
-    #screen.blit(sample_surface, (150,50))
+    
+    if small_pos < 0:
+        small_pos = 760
+    small_pos -= .5
+    screen.blit(small_cactus, (small_pos, 250))
+    #screen.blit(big_cactus, (720, 250))
 
     # keep updating the display & make sure it stays
     pygame.display.update()
