@@ -34,7 +34,7 @@ ground.fill('white')
 curr_score = 0
 high_score = 0
 
-text = curr_font.render(f'HI  {curr_score:05}  {high_score:05}', True, 'Black')
+text = curr_font.render(f'HI  {high_score:05}  {curr_score:05}', True, 'Black')
 
 dino = pygame.image.load(r'C:\Users\ramya\OneDrive\Documents\GitHub\dino-game\dino.png').convert_alpha()
 dino = pygame.transform.scale(dino, (50, 55))
@@ -83,8 +83,8 @@ while True:
     screen.blit(sky, (0,0))
     screen.blit(ground, (0, 300))
     screen.blit(text, (640, 10))
-    #curr_score += 1
-    text = curr_font.render(f'HI  {curr_score:05}  {high_score:05}', True, 'Black')
+    curr_score += 1
+    text = curr_font.render(f'HI  {high_score:05}  {curr_score:05}', True, 'Black')
     pygame.draw.line(screen, (92, 92, 91), (0, 300), (800, 300), 2)
 
     gravity += 1
@@ -114,6 +114,9 @@ while True:
         if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
             choice, rect = random_choice()
             rect.left = 800
+            if high_score < curr_score:
+                high_score = curr_score
+            curr_score = 0
             game_active = True
 
     # keep updating the display & make sure it stays
