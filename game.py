@@ -38,7 +38,7 @@ text = curr_font.render(f'HI  {high_score:05}  {curr_score:05}', True, 'Black')
 
 dino = pygame.image.load(r'C:\Users\ramya\OneDrive\Documents\GitHub\dino-game\dino.png').convert_alpha()
 dino = pygame.transform.scale(dino, (50, 55))
-dino_rect = dino.get_rect(bottomleft = (5, 300))
+dino_rect = dino.get_rect(bottomleft = (30, 300))
 
 med_cactus = pygame.image.load(r'C:\Users\ramya\OneDrive\Documents\GitHub\dino-game\cactus.png').convert_alpha()
 med_cactus = pygame.transform.scale(med_cactus, (30, 60))
